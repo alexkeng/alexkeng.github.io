@@ -1,0 +1,15 @@
+  <p>tab to focus on the input, in Edge, Narrator will read "custom price group", then "custom input"</p>
+  <p>in Chrome, Narrator will read "custom input" only.</p>
+  <currency-input aria-label="Custom Price">slotted_text</currency-input>
+
+  <script>
+  customElements.define('currency-input', class extends HTMLElement {
+    connectedCallback() {
+      if (!this.shadowRoot) {
+        const root = this.attachShadow({mode: 'open'});
+        root.innerHTML = `<slot></slot><input type="text" placeholder="custom input">`;
+      }
+    }
+  });
+  </script>
+  
